@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Syarat & Ketentuan - Rekber Faris Asa</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config = { darkMode: 'class' }</script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>body { font-family: 'Poppins', sans-serif; } .gradient-bg { background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%); } .gold-gradient { background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%); }
+
+  .shimmer {
+    background: linear-gradient(110deg, #ffffff 0%, #ffffff 40%, #fbbf24 50%, #ffffff 60%, #ffffff 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer 3s linear infinite;
+  }
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+</style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 min-h-screen">
+
+<!-- NAVBAR -->
+<nav class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-700">
+  <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center gap-3">
+    <a href="index.html" class="flex items-center gap-2">
+      <div class="w-10 h-10 rounded-lg gold-gradient flex items-center justify-center font-bold text-slate-900 text-sm">RFA</div>
+      <span class="font-bold text-lg shimmer">RekberFarisAsa</span>
+    </a>
+    <div class="flex items-center gap-2">
+      <button onclick="toggleTheme()" class="w-10 h-10 flex items-center justify-center text-slate-300 hover:text-amber-400 border border-slate-600 rounded-lg"><i id="themeIcon" class="fas fa-moon"></i></button>
+      <button onclick="toggleLang()" class="flex items-center gap-2 text-slate-300 hover:text-amber-400 border border-slate-600 rounded-lg px-3 py-2 text-sm font-semibold"><i class="fas fa-globe"></i><span id="langLabel">EN</span></button>
+      <a href="index.html" class="text-slate-300 hover:text-amber-400 text-sm flex items-center gap-2"><i class="fas fa-arrow-left"></i> <span class="hidden sm:inline" data-i18n="nav_back">Kembali ke Beranda</span></a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="gradient-bg pt-16 pb-12 px-4">
+  <div class="max-w-3xl mx-auto text-center">
+    <div class="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 text-amber-400 px-4 py-1.5 rounded-full text-sm mb-6">
+      <i class="fas fa-scale-balanced"></i> <span data-i18n="legal_badge">Dokumen Resmi</span>
+    </div>
+    <h1 class="text-3xl md:text-5xl font-extrabold text-white leading-tight" data-i18n="legal_title">Syarat & Ketentuan serta Kebijakan Privasi</h1>
+  </div>
+</section>
+
+<!-- TERMS -->
+<section id="terms" class="py-16 px-4 bg-slate-50 dark:bg-slate-950">
+  <div class="max-w-3xl mx-auto">
+    <h2 class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-8 flex items-center gap-3"><i class="fas fa-file-contract text-amber-500"></i> <span data-i18n="terms_title">Syarat & Ketentuan</span></h2>
+    <div class="space-y-3">
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-5 text-sm text-slate-600 dark:text-slate-300" data-i18n="tc1"><strong>Persetujuan Layanan</strong> — Dengan menggunakan jasa Rekber Faris Asa, Anda dianggap telah membaca, memahami, dan menyetujui seluruh syarat & ketentuan yang berlaku.</div>
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-5 text-sm text-slate-600 dark:text-slate-300" data-i18n="tc2"><strong>Kanal Transaksi Resmi</strong> — Seluruh transaksi HANYA dilayani melalui WhatsApp resmi +62 895-0991-5451 yang tercantum di website ini. Kami tidak bertanggung jawab atas transaksi di luar kanal tersebut.</div>
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-5 text-sm text-slate-600 dark:text-slate-300" data-i18n="tc3"><strong>Fee Rekber</strong> — Domestik: 1% dari nilai transaksi. Internasional: $5 (buyer) + $5 (seller). Fee dapat disesuaikan berdasarkan kesepakatan kedua pihak.</div>
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-5 text-sm text-slate-600 dark:text-slate-300" data-i18n="tc4"><strong>Refund</strong> — Apabila akun tidak cocok atau transaksi batal sesuai prosedur, dana buyer di-refund 100% setelah seller mengamankan kembali akun.</div>
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-5 text-sm text-slate-600 dark:text-slate-300" data-i18n="tc5"><strong>Kewajiban Verifikasi</strong> — Seller wajib melengkapi verifikasi (KTP, video wajah, lokasi) dan buyer wajib mengganti seluruh akses akun (auth, backup code, password) sesuai alur transaksi.</div>
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-5 text-sm text-slate-600 dark:text-slate-300" data-i18n="tc6"><strong>Larangan</strong> — Kami tidak melayani transaksi yang melibatkan akun curian, penipuan, pencucian uang, atau aktivitas ilegal lainnya.</div>
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-5 text-sm text-slate-600 dark:text-slate-300" data-i18n="tc7"><strong>Penyelesaian Sengketa</strong> — Sengketa akan dimediasi oleh Rekber Faris Asa berdasarkan bukti transaksi. Keputusan mediator bersifat final.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRIVACY -->
+<section id="privacy" class="py-16 px-4 bg-white dark:bg-slate-900">
+  <div class="max-w-3xl mx-auto">
+    <h2 class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-8 flex items-center gap-3"><i class="fas fa-user-shield text-amber-500"></i> <span data-i18n="privacy_title">Kebijakan Privasi</span></h2>
+    <div class="space-y-3">
+      <div class="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-5 text-sm text-slate-600 dark:text-slate-300" data-i18n="pv1"><strong>Data yang Dikumpulkan</strong> — Nama, kontak, informasi akun, dan dokumen verifikasi (KTP) yang diperlukan untuk keamanan transaksi.</div>
+      <div class="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-5 text-sm text-slate-600 dark:text-slate-300" data-i18n="pv2"><strong>Penggunaan Data</strong> — Data hanya digunakan untuk keperluan verifikasi dan keamanan transaksi, tidak dijual atau dibagikan ke pihak ketiga.</div>
+      <div class="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-5 text-sm text-slate-600 dark:text-slate-300" data-i18n="pv3"><strong>Penyimpanan Data</strong> — Data disimpan secara aman dan rahasia sesuai standar perlindungan data yang berlaku.</div>
+      <div class="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-5 text-sm text-slate-600 dark:text-slate-300" data-i18n="pv4"><strong>Penghapusan Data</strong> — Anda berhak meminta penghapusan data pribadi paling cepat <strong>30 hari setelah transaksi selesai</strong>. Permohonan diajukan melalui <strong>WhatsApp resmi</strong> kami dan akan diproses maksimal 7 hari kerja.</div>
+      <div class="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-5 text-sm text-slate-600 dark:text-slate-300" data-i18n="pv5"><strong>Kontak</strong> — Pertanyaan terkait privasi dapat dikirim ke farisfapk@gmail.com.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-slate-900 text-slate-400 py-8 px-4 border-t border-slate-800">
+  <div class="max-w-6xl mx-auto text-center text-sm">&copy; 2026 RekberFarisAsa.com • PT Faris Asa Digital. All Rights Reserved.</div>
+</footer>
+
+<script>
+  const T = {
+    id: {
+      nav_back:"Kembali ke Beranda", legal_badge:"Dokumen Resmi", legal_title:"Syarat & Ketentuan serta Kebijakan Privasi",
+      terms_title:"Syarat & Ketentuan", privacy_title:"Kebijakan Privasi",
+      tc1:"<strong>Persetujuan Layanan</strong> — Dengan menggunakan jasa Rekber Faris Asa, Anda dianggap telah membaca, memahami, dan menyetujui seluruh syarat & ketentuan yang berlaku.",
+      tc2:"<strong>Kanal Transaksi Resmi</strong> — Seluruh transaksi HANYA dilayani melalui WhatsApp resmi +62 895-0991-5451 yang tercantum di website ini. Kami tidak bertanggung jawab atas transaksi di luar kanal tersebut.",
+      tc3:"<strong>Fee Rekber</strong> — Domestik: 1% dari nilai transaksi. Internasional: $5 (buyer) + $5 (seller). Fee dapat disesuaikan berdasarkan kesepakatan kedua pihak.",
+      tc4:"<strong>Refund</strong> — Apabila akun tidak cocok atau transaksi batal sesuai prosedur, dana buyer di-refund 100% setelah seller mengamankan kembali akun.",
+      tc5:"<strong>Kewajiban Verifikasi</strong> — Seller wajib melengkapi verifikasi (KTP, video wajah, lokasi) dan buyer wajib mengganti seluruh akses akun (auth, backup code, password) sesuai alur transaksi.",
+      tc6:"<strong>Larangan</strong> — Kami tidak melayani transaksi yang melibatkan akun curian, penipuan, pencucian uang, atau aktivitas ilegal lainnya.",
+      tc7:"<strong>Penyelesaian Sengketa</strong> — Sengketa akan dimediasi oleh Rekber Faris Asa berdasarkan bukti transaksi. Keputusan mediator bersifat final.",
+      pv1:"<strong>Data yang Dikumpulkan</strong> — Nama, kontak, informasi akun, dan dokumen verifikasi (KTP) yang diperlukan untuk keamanan transaksi.",
+      pv2:"<strong>Penggunaan Data</strong> — Data hanya digunakan untuk keperluan verifikasi dan keamanan transaksi, tidak dijual atau dibagikan ke pihak ketiga.",
+      pv3:"<strong>Penyimpanan Data</strong> — Data disimpan secara aman dan rahasia sesuai standar perlindungan data yang berlaku.",
+      pv4:"<strong>Penghapusan Data</strong> — Anda berhak meminta penghapusan data pribadi paling cepat <strong>30 hari setelah transaksi selesai</strong>. Permohonan diajukan melalui <strong>WhatsApp resmi</strong> kami dan akan diproses maksimal 7 hari kerja.",
+      pv5:"<strong>Kontak</strong> — Pertanyaan terkait privasi dapat dikirim ke farisfapk@gmail.com."
+    },
+    en: {
+      nav_back:"Back to Home", legal_badge:"Official Documents", legal_title:"Terms & Conditions and Privacy Policy",
+      terms_title:"Terms & Conditions", privacy_title:"Privacy Policy",
+      tc1:"<strong>Agreement to Service</strong> — By using Rekber Faris Asa's services, you are deemed to have read, understood, and agreed to all applicable terms & conditions.",
+      tc2:"<strong>Official Transaction Channel</strong> — All transactions are ONLY handled through the official WhatsApp +62 895-0991-5451 listed on this website. We are not responsible for transactions outside this channel.",
+      tc3:"<strong>Escrow Fee</strong> — Domestic: 1% of the transaction value. International: $5 (buyer) + $5 (seller). Fees may be adjusted based on mutual agreement.",
+      tc4:"<strong>Refund</strong> — If the account does not match or the transaction is cancelled according to procedure, the buyer's funds are 100% refunded after the seller re-secures the account.",
+      tc5:"<strong>Verification Obligations</strong> — The seller must complete verification (ID card, face video, location) and the buyer must change all account access (auth, backup code, password) according to the transaction flow.",
+      tc6:"<strong>Prohibitions</strong> — We do not handle transactions involving stolen accounts, fraud, money laundering, or other illegal activities.",
+      tc7:"<strong>Dispute Resolution</strong> — Disputes will be mediated by Rekber Faris Asa based on transaction evidence. The mediator's decision is final.",
+      pv1:"<strong>Data Collected</strong> — Name, contact, account information, and verification documents (ID card) required for transaction security.",
+      pv2:"<strong>Use of Data</strong> — Data is used only for verification and transaction security purposes, and is not sold or shared with third parties.",
+      pv3:"<strong>Data Storage</strong> — Data is stored securely and confidentially in accordance with applicable data protection standards.",
+      pv4:"<strong>Data Deletion</strong> — You have the right to request deletion of personal data at the earliest <strong>30 days after the transaction is completed</strong>. Requests must be submitted via our official <strong>WhatsApp</strong> and will be processed within 7 business days.",
+      pv5:"<strong>Contact</strong> — Privacy-related questions can be sent to farisfapk@gmail.com."
+    }
+  };
+  let lang = localStorage.getItem('lang') || 'id';
+  function applyLang(l) {
+    lang = l; localStorage.setItem('lang', l);
+    document.querySelectorAll('[data-i18n]').forEach(e => {
+      const k = e.getAttribute('data-i18n');
+      if (T[l][k] !== undefined) e.innerHTML = T[l][k];
+    });
+    const lb = document.getElementById('langLabel');
+    if (lb) lb.textContent = (l === 'id' ? 'EN' : 'ID');
+    document.documentElement.lang = l;
+  }
+  function toggleLang() { applyLang(lang === 'id' ? 'en' : 'id'); }
+
+  let theme = localStorage.getItem('theme') || 'light';
+  function applyTheme(t) {
+    theme = t; localStorage.setItem('theme', t);
+    document.documentElement.classList.toggle('dark', t === 'dark');
+    const ic = document.getElementById('themeIcon');
+    if (ic) ic.className = (t === 'dark' ? 'fas fa-sun' : 'fas fa-moon');
+  }
+  function toggleTheme() { applyTheme(theme === 'dark' ? 'light' : 'dark'); }
+
+  applyTheme(theme);
+  applyLang(lang);
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SWYH44CMTC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SWYH44CMTC');
+</script>
+
+<!-- Cookie Consent -->
+<div id="cookieBanner" class="fixed bottom-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur border-t border-slate-700 p-4 hidden">
+  <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center gap-3 justify-between">
+    <p class="text-slate-300 text-sm text-center sm:text-left">🍛 Website ini menggunakan cookie & Google Analytics untuk meningkatkan layanan. Dengan melanjutkan, Anda menyetujui <a href="legal.html#privacy" class="text-amber-400 underline">Kebijakan Privasi</a> kami.</p>
+    <button onclick="setujuCookie()" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-6 py-2.5 rounded-lg text-sm whitespace-nowrap">Saya Setuju</button>
+  </div>
+</div>
+<script>
+  if (!localStorage.getItem('cookieOk')) document.getElementById('cookieBanner').classList.remove('hidden');
+  function setujuCookie() { localStorage.setItem('cookieOk','1'); document.getElementById('cookieBanner').classList.add('hidden'); }
+</script>
+
+</body>
+</html>

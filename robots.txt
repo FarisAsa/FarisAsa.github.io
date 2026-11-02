@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rekberfarisasa.com/sitemap.xml

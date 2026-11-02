@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kalkulator Fee Rekber - Rekber Faris Asa</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config = { darkMode: 'class' }</script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  body { font-family: 'Poppins', sans-serif; }
+  .gradient-bg { background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%); }
+  .gold-gradient { background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%); }
+  .tab-active { background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%); color: #0f172a; }
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+  input[type="number"] { -moz-appearance: textfield; }
+
+  .shimmer {
+    background: linear-gradient(110deg, #ffffff 0%, #ffffff 40%, #fbbf24 50%, #ffffff 60%, #ffffff 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer 3s linear infinite;
+  }
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+  
+</style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 min-h-screen">
+
+<!-- NAVBAR -->
+<nav class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-700">
+  <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center gap-3">
+    <a href="index.html" class="flex items-center gap-2">
+      <div class="w-10 h-10 rounded-lg gold-gradient flex items-center justify-center font-bold text-slate-900 text-sm">RFA</div>
+      <span class="font-bold text-lg shimmer">RekberFarisAsa</span>
+    </a>
+    <div class="flex items-center gap-2">
+      <button onclick="toggleTheme()" class="w-10 h-10 flex items-center justify-center text-slate-300 hover:text-amber-400 border border-slate-600 rounded-lg" title="Light/Dark Mode">
+        <i id="themeIcon" class="fas fa-moon"></i>
+      </button>
+      <button onclick="toggleLang()" class="flex items-center gap-2 text-slate-300 hover:text-amber-400 border border-slate-600 rounded-lg px-3 py-2 text-sm font-semibold">
+        <i class="fas fa-globe"></i><span id="langLabel">EN</span>
+      </button>
+      <a href="index.html" class="text-slate-300 hover:text-amber-400 text-sm flex items-center gap-2">
+        <i class="fas fa-arrow-left"></i> <span class="hidden sm:inline" data-i18n="nav_back">Kembali ke Beranda</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="gradient-bg pt-16 pb-12 px-4">
+  <div class="max-w-3xl mx-auto text-center">
+    <div class="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 text-amber-400 px-4 py-1.5 rounded-full text-sm mb-6">
+      <i class="fas fa-calculator"></i> <span data-i18n="hero_badge">Kalkulator Otomatis</span>
+    </div>
+    <h1 class="text-3xl md:text-5xl font-extrabold text-white leading-tight mb-4" data-i18n="hero_title">Hitung <span class="bg-gradient-to-r from-amber-400 to-amber-600 bg-clip-text text-transparent">Fee Rekber</span></h1>
+    <p class="text-slate-300 text-lg" data-i18n="hero_desc">Transparan, akurat, dan tanpa biaya tersembunyi.</p>
+  </div>
+</section>
+
+<!-- KALKULATOR -->
+<section class="py-12 px-4 bg-slate-50 dark:bg-slate-950">
+  <div class="max-w-3xl mx-auto">
+
+    <!-- Tabs -->
+    <div class="grid grid-cols-2 gap-2 bg-slate-200 dark:bg-slate-800 p-2 rounded-2xl mb-8">
+      <button onclick="switchTab('domestik')" id="tab-domestik" class="tab-active py-4 px-4 rounded-xl font-semibold transition-all flex items-center justify-center gap-2">
+        <i class="fas fa-flag"></i> <span data-i18n="tab_dom">Domestik (ID-ID)</span>
+      </button>
+      <button onclick="switchTab('internasional')" id="tab-internasional" class="py-4 px-4 rounded-xl font-semibold text-slate-600 dark:text-slate-300 transition-all flex items-center justify-center gap-2">
+        <i class="fas fa-globe"></i> <span data-i18n="tab_intl">Internasional</span>
+      </button>
+    </div>
+
+    <!-- Card Kalkulator -->
+    <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-xl p-6 md:p-10 border border-slate-200 dark:border-slate-700">
+
+      <!-- DOMESTIK -->
+      <div id="panel-domestik">
+        <div class="mb-6 p-4 bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/30 rounded-xl">
+          <div class="flex items-start gap-3">
+            <i class="fas fa-info-circle text-amber-500 mt-1"></i>
+            <div class="text-sm text-slate-700 dark:text-slate-300" data-i18n="dom_info"><strong>Fee Domestik:</strong> 1% dari nilai transaksi (dibebankan ke buyer atau seller sesuai kesepakatan).</div>
+          </div>
+        </div>
+
+        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2" data-i18n="dom_label">Nilai Transaksi (Rp)</label>
+        <div class="relative mb-6">
+          <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-400 font-semibold">Rp</span>
+          <input type="text" inputmode="numeric" id="nilai-domestik" placeholder="10.000.000" value="10.000.000" oninput="formatDomestik()" class="w-full pl-12 pr-4 py-4 border-2 border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl text-xl font-bold focus:border-amber-500 outline-none transition">
+        </div>
+
+        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2" data-i18n="dom_feeby">Fee Ditanggung</label>
+        <div class="grid grid-cols-3 gap-2 mb-8">
+          <button onclick="setFeeBy('buyer')" id="by-buyer" class="py-3 px-3 rounded-xl border-2 border-amber-500 bg-amber-50 dark:bg-amber-500/10 text-amber-700 dark:text-amber-400 font-semibold text-sm">Buyer</button>
+          <button onclick="setFeeBy('seller')" id="by-seller" class="py-3 px-3 rounded-xl border-2 border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 font-semibold text-sm">Seller</button>
+          <button onclick="setFeeBy('split')" id="by-split" class="py-3 px-3 rounded-xl border-2 border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 font-semibold text-sm" data-i18n="dom_split">Bagi 2</button>
+        </div>
+
+        <!-- Hasil -->
+        <div class="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl p-6 text-white">
+          <h3 class="text-lg font-bold mb-4 text-amber-400 flex items-center gap-2">
+            <i class="fas fa-receipt"></i> <span data-i18n="dom_result">Rincian Transaksi</span>
+          </h3>
+          <div class="space-y-3">
+            <div class="flex justify-between pb-3 border-b border-slate-700">
+              <span class="text-slate-300" data-i18n="r_nilai">Nilai Transaksi</span>
+              <span id="d-nilai" class="font-bold">Rp 10.000.000</span>
+            </div>
+            <div class="flex justify-between pb-3 border-b border-slate-700">
+              <span class="text-slate-300" data-i18n="r_fee">Fee Rekber (1%)</span>
+              <span id="d-fee" class="font-bold text-amber-400">Rp 100.000</span>
+            </div>
+            <div class="flex justify-between pb-3 border-b border-slate-700">
+              <span class="text-slate-300" data-i18n="r_buyer">Total Dibayar Buyer</span>
+              <span id="d-buyer" class="font-bold">Rp 10.100.000</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-slate-300" data-i18n="r_seller">Total Diterima Seller</span>
+              <div class="flex items-center gap-2">
+  <span id="d-seller" class="font-bold text-green-400">Rp 10.000.000</span>
+  <button onclick="copyToClipboard('d-seller', this)" class="text-slate-400 hover:text-amber-400 transition-colors" title="Copy">
+    <i class="far fa-copy"></i>
+  </button>
+</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- INTERNASIONAL (USD) -->
+      <div id="panel-internasional" class="hidden">
+        <div class="mb-6 p-4 bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-500/30 rounded-xl">
+          <div class="flex items-start gap-3">
+            <i class="fas fa-info-circle text-blue-500 mt-1"></i>
+            <div class="text-sm text-slate-700 dark:text-slate-300" data-i18n="intl_info"><strong>Fee Internasional:</strong> $5 untuk Buyer + $5 untuk Seller = <strong>$10 total</strong>.</div>
+          </div>
+        </div>
+
+        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2" data-i18n="intl_label">Nilai Transaksi (USD)</label>
+        <div class="relative mb-8">
+          <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-400 font-semibold">$</span>
+          <input type="text" inputmode="numeric" id="nilai-intl" placeholder="2,000" value="2,000" oninput="formatIntl()" class="w-full pl-12 pr-4 py-4 border-2 border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl text-xl font-bold focus:border-amber-500 outline-none transition">
+        </div>
+
+        <!-- Hasil -->
+        <div class="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl p-6 text-white">
+          <h3 class="text-lg font-bold mb-4 text-amber-400 flex items-center gap-2">
+            <i class="fas fa-receipt"></i> <span data-i18n="intl_result">Rincian Transaksi Internasional</span>
+          </h3>
+          <div class="space-y-3">
+            <div class="flex justify-between pb-3 border-b border-slate-700">
+              <span class="text-slate-300" data-i18n="r_nilai">Nilai Transaksi</span>
+              <span id="i-nilai" class="font-bold">$ 2,000.00</span>
+            </div>
+            <div class="flex justify-between pb-3 border-b border-slate-700">
+              <span class="text-slate-300">Fee Buyer</span>
+              <span id="i-buyer-fee" class="font-bold text-amber-400">$ 5.00</span>
+            </div>
+            <div class="flex justify-between pb-3 border-b border-slate-700">
+              <span class="text-slate-300">Fee Seller</span>
+              <span id="i-seller-fee" class="font-bold text-amber-400">$ 5.00</span>
+            </div>
+            <div class="flex justify-between pb-3 border-b border-slate-700 bg-slate-800/50 p-3 rounded-lg -mx-3">
+              <span class="text-slate-300 font-semibold" data-i18n="r_totalfee">Total Fee Rekber</span>
+              <span id="i-total-fee" class="font-bold text-amber-400">$ 10.00</span>
+            </div>
+            <div class="flex justify-between pb-3 border-b border-slate-700">
+              <span class="text-slate-300" data-i18n="r_buyer">Total Dibayar Buyer</span>
+              <span id="i-buyer-total" class="font-bold">$ 2,005.00</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-slate-300" data-i18n="r_seller">Total Diterima Seller</span>
+              <div class="flex items-center gap-2">
+  <span id="i-seller-total" class="font-bold text-green-400">$ 1,995.00</span>
+  <button onclick="copyToClipboard('i-seller-total', this)" class="text-slate-400 hover:text-amber-400 transition-colors" title="Copy">
+    <i class="far fa-copy"></i>
+  </button>
+</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Disclaimer -->
+      <div class="mt-8 p-4 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs text-slate-600 dark:text-slate-300" data-i18n="disclaimer">
+        <strong class="text-slate-800 dark:text-white">⚠️ Catatan:</strong> Hasil perhitungan ini adalah estimasi. Fee final dapat disesuaikan sesuai kesepakatan. Hubungi kami untuk konfirmasi sebelum transaksi.
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center mt-10">
+      <p class="text-slate-600 dark:text-slate-300 mb-4" data-i18n="cta_desc">Sudah tahu fee-nya? Langsung mulai transaksi!</p>
+      <a href="https://wa.me/6289509915451?text=Halo%20Bang%20Faris%2C%20saya%20ingin%20transaksi%20rekber.%20Bisa%20dibantu%3F" target="_blank" class="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg">
+        <i class="fab fa-whatsapp text-xl"></i> <span data-i18n="cta_btn">Hubungi via WhatsApp</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- WARNING -->
+<section class="py-10 px-4 bg-red-600">
+  <div class="max-w-4xl mx-auto flex gap-4 items-start text-white">
+    <i class="fas fa-triangle-exclamation text-3xl mt-1"></i>
+    <div>
+      <h3 class="font-bold text-xl mb-2" data-i18n="warn_title">PERHATIAN PENTING!</h3>
+      <p class="text-sm md:text-base" data-i18n="warn_desc">Rekber Faris Asa HANYA melayani transaksi melalui WhatsApp di nomor <strong class="text-white">+62 895-0991-5451</strong>. Selalu hubungi kami melalui tombol WhatsApp di website ini. HATI-HATI terhadap akun clone/palsu yang mengatasnamakan kami. Kami tidak bertanggung jawab atas transaksi di luar nomor tersebut.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-slate-900 text-slate-400 py-8 px-4 border-t border-slate-800 mt-8">
+  <div class="max-w-6xl mx-auto text-center text-sm">
+    &copy; 2026 RekberFarisAsa.com • PT Faris Asa Digital. All Rights Reserved.
+  </div>
+</footer>
+
+<script>
+  // ===== TERJEMAHAN =====
+  const T = {
+    id: {
+      nav_back:"Kembali ke Beranda",
+      hero_badge:"Kalkulator Otomatis",
+      hero_title:"Hitung <span class=\"bg-gradient-to-r from-amber-400 to-amber-600 bg-clip-text text-transparent\">Fee Rekber</span>",
+      hero_desc:"Transparan, akurat, dan tanpa biaya tersembunyi.",
+      tab_dom:"Domestik (ID-ID)", tab_intl:"Internasional",
+      dom_info:"<strong>Fee Domestik:</strong> 1% dari nilai transaksi (dibebankan ke buyer atau seller sesuai kesepakatan).",
+      dom_label:"Nilai Transaksi (Rp)", dom_feeby:"Fee Ditanggung", dom_split:"Bagi 2",
+      dom_result:"Rincian Transaksi",
+      r_nilai:"Nilai Transaksi", r_fee:"Fee Rekber (1%)", r_buyer:"Total Dibayar Buyer", r_seller:"Total Diterima Seller", r_totalfee:"Total Fee Rekber",
+      intl_info:"<strong>Fee Internasional:</strong> $5 untuk Buyer + $5 untuk Seller = <strong>$10 total</strong>.",
+      intl_label:"Nilai Transaksi (USD)", intl_result:"Rincian Transaksi Internasional",
+      disclaimer:"<strong class=\"text-slate-800 dark:text-white\">⚠️ Catatan:</strong> Hasil perhitungan ini adalah estimasi. Fee final dapat disesuaikan sesuai kesepakatan. Hubungi kami untuk konfirmasi sebelum transaksi.",
+      cta_desc:"Sudah tahu fee-nya? Langsung mulai transaksi!", cta_btn:"Hubungi via WhatsApp",
+      warn_title:"PERHATIAN PENTING!", warn_desc:"Rekber Faris Asa HANYA melayani transaksi melalui WhatsApp di nomor <strong class=\"text-white\">+62 895-0991-5451</strong>. Selalu hubungi kami melalui tombol WhatsApp di website ini. HATI-HATI terhadap akun clone/palsu yang mengatasnamakan kami. Kami tidak bertanggung jawab atas transaksi di luar nomor tersebut."
+    },
+    en: {
+      nav_back:"Back to Home",
+      hero_badge:"Automatic Calculator",
+      hero_title:"Calculate <span class=\"bg-gradient-to-r from-amber-400 to-amber-600 bg-clip-text text-transparent\">Escrow Fee</span>",
+      hero_desc:"Transparent, accurate, and no hidden fees.",
+      tab_dom:"Domestic (ID-ID)", tab_intl:"International",
+      dom_info:"<strong>Domestic Fee:</strong> 1% of the transaction value (charged to buyer or seller as agreed).",
+      dom_label:"Transaction Value (Rp)", dom_feeby:"Fee Borne By", dom_split:"Split 50/50",
+      dom_result:"Transaction Details",
+      r_nilai:"Transaction Value", r_fee:"Escrow Fee (1%)", r_buyer:"Total Paid by Buyer", r_seller:"Total Received by Seller", r_totalfee:"Total Escrow Fee",
+      intl_info:"<strong>International Fee:</strong> $5 for Buyer + $5 for Seller = <strong>$10 total</strong>.",
+      intl_label:"Transaction Value (USD)", intl_result:"International Transaction Details",
+      disclaimer:"<strong class=\"text-slate-800 dark:text-white\">⚠️ Note:</strong> This calculation is an estimate. The final fee may be adjusted based on agreement. Contact us for confirmation before the transaction.",
+      cta_desc:"Already know the fee? Start your transaction now!", cta_btn:"Contact via WhatsApp",
+      warn_title:"IMPORTANT WARNING!", warn_desc:"Rekber Faris Asa ONLY handles transactions via WhatsApp at <strong class=\"text-white\">+62 895-0991-5451</strong>. Always contact us through the WhatsApp buttons on this website. BEWARE of clone/fake accounts impersonating us. We are not responsible for transactions outside this number."
+    }
+  };
+  let lang = localStorage.getItem('lang') || 'id';
+  function applyLang(l) {
+    lang = l;
+    localStorage.setItem('lang', l);
+    document.querySelectorAll('[data-i18n]').forEach(e => {
+      const k = e.getAttribute('data-i18n');
+      if (T[l][k] !== undefined) e.innerHTML = T[l][k];
+    });
+    const lb = document.getElementById('langLabel');
+    if (lb) lb.textContent = (l === 'id' ? 'EN' : 'ID');
+    document.documentElement.lang = l;
+  }
+  function toggleLang() { applyLang(lang === 'id' ? 'en' : 'id'); }
+
+  // ===== THEME =====
+  let theme = localStorage.getItem('theme') || 'light';
+  function applyTheme(t) {
+    theme = t;
+    localStorage.setItem('theme', t);
+    document.documentElement.classList.toggle('dark', t === 'dark');
+    const ic = document.getElementById('themeIcon');
+    if (ic) ic.className = (t === 'dark' ? 'fas fa-sun' : 'fas fa-moon');
+  }
+  function toggleTheme() { applyTheme(theme === 'dark' ? 'light' : 'dark'); }
+
+  // ===== FORMAT ANGKA =====
+  function formatRupiah(angka) {
+    return 'Rp ' + Math.round(angka).toLocaleString('id-ID');
+  }
+  function formatUSD(angka) {
+    return '$ ' + angka.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  // ===== TAB SWITCH =====
+  function switchTab(tab) {
+    document.getElementById('panel-domestik').classList.toggle('hidden', tab !== 'domestik');
+    document.getElementById('panel-internasional').classList.toggle('hidden', tab !== 'internasional');
+    document.getElementById('tab-domestik').classList.toggle('tab-active', tab === 'domestik');
+    document.getElementById('tab-internasional').classList.toggle('tab-active', tab === 'internasional');
+    document.getElementById('tab-domestik').classList.toggle('text-slate-600', tab !== 'domestik');
+    document.getElementById('tab-domestik').classList.toggle('dark:text-slate-300', tab !== 'domestik');
+    document.getElementById('tab-internasional').classList.toggle('text-slate-600', tab !== 'internasional');
+    document.getElementById('tab-internasional').classList.toggle('dark:text-slate-300', tab !== 'internasional');
+    if (tab === 'domestik') hitungDomestik();
+    else hitungIntl();
+  }
+
+  // ===== DOMESTIK (1%) =====
+  let feeBy = 'buyer';
+  function setFeeBy(tipe) {
+    feeBy = tipe;
+    const aktif = 'py-3 px-3 rounded-xl border-2 font-semibold text-sm border-amber-500 bg-amber-50 dark:bg-amber-500/10 text-amber-700 dark:text-amber-400';
+    const nonaktif = 'py-3 px-3 rounded-xl border-2 font-semibold text-sm border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300';
+    document.getElementById('by-buyer').className = (tipe === 'buyer') ? aktif : nonaktif;
+    document.getElementById('by-seller').className = (tipe === 'seller') ? aktif : nonaktif;
+    document.getElementById('by-split').className = (tipe === 'split') ? aktif : nonaktif;
+    hitungDomestik();
+  }
+
+  function bacaAngka(id) {
+    return parseInt((document.getElementById(id).value || '').replace(/\D/g, ''), 10) || 0;
+  }
+  function formatDomestik() {
+    const el = document.getElementById('nilai-domestik');
+    const d = el.value.replace(/\D/g, '').slice(0, 15);
+    el.value = d ? Number(d).toLocaleString('id-ID') : '';
+    hitungDomestik();
+  }
+  function formatIntl() {
+    const el = document.getElementById('nilai-intl');
+    const d = el.value.replace(/\D/g, '').slice(0, 15);
+    el.value = d ? Number(d).toLocaleString('en-US') : '';
+    hitungIntl();
+  }
+
+  function hitungDomestik() {
+    const nilai = bacaAngka('nilai-domestik');
+    const fee = nilai * 0.01;
+    let totalBuyer = nilai;
+    let totalSeller = nilai;
+    if (feeBy === 'buyer') {
+      totalBuyer = nilai + fee;
+    } else if (feeBy === 'seller') {
+      totalSeller = nilai - fee;
+    } else {
+      totalBuyer = nilai + fee / 2;
+      totalSeller = nilai - fee / 2;
+    }
+    document.getElementById('d-nilai').textContent = formatRupiah(nilai);
+    document.getElementById('d-fee').textContent = formatRupiah(fee);
+    document.getElementById('d-buyer').textContent = formatRupiah(totalBuyer);
+    document.getElementById('d-seller').textContent = formatRupiah(totalSeller);
+  }
+
+  // ===== INTERNASIONAL (USD, FLAT $5 + $5) =====
+  function hitungIntl() {
+    const nilai = bacaAngka('nilai-intl');
+    const feeBuyer = 5;
+    const feeSeller = 5;
+    document.getElementById('i-nilai').textContent = formatUSD(nilai);
+    document.getElementById('i-buyer-fee').textContent = formatUSD(feeBuyer);
+    document.getElementById('i-seller-fee').textContent = formatUSD(feeSeller);
+    document.getElementById('i-total-fee').textContent = formatUSD(feeBuyer + feeSeller);
+    document.getElementById('i-buyer-total').textContent = formatUSD(nilai + feeBuyer);
+    document.getElementById('i-seller-total').textContent = formatUSD(nilai - feeSeller);
+  }
+
+  // ===== INIT =====
+  applyTheme(theme);
+  applyLang(lang);
+  hitungDomestik();
+  hitungIntl();
+</script>
+
+<!-- Back to Top -->
+<button onclick="window.scrollTo({top:0,behavior:'smooth'})" id="btnTop" class="fixed bottom-6 right-6 w-12 h-12 bg-amber-500 hover:bg-amber-600 text-slate-900 rounded-full shadow-2xl z-40 hidden items-center justify-center text-xl transition-all" title="Kembali ke atas">
+  <i class="fas fa-arrow-up"></i>
+</button>
+<script>
+  window.addEventListener('scroll', function () {
+    const btn = document.getElementById('btnTop');
+    if (window.scrollY > 300) { btn.classList.remove('hidden'); btn.classList.add('flex'); }
+    else { btn.classList.add('hidden'); btn.classList.remove('flex'); }
+  });
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SWYH44CMTC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SWYH44CMTC');
+</script>
+
+<!-- Cookie Consent -->
+<div id="cookieBanner" class="fixed bottom-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur border-t border-slate-700 p-4 hidden">
+  <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center gap-3 justify-between">
+    <p class="text-slate-300 text-sm text-center sm:text-left">🍛 Website ini menggunakan cookie & Google Analytics untuk meningkatkan layanan. Dengan melanjutkan, Anda menyetujui <a href="legal.html#privacy" class="text-amber-400 underline">Kebijakan Privasi</a> kami.</p>
+    <button onclick="setujuCookie()" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-6 py-2.5 rounded-lg text-sm whitespace-nowrap">Saya Setuju</button>
+  </div>
+</div>
+<script>
+  if (!localStorage.getItem('cookieOk')) document.getElementById('cookieBanner').classList.remove('hidden');
+  function setujuCookie() { localStorage.setItem('cookieOk','1'); document.getElementById('cookieBanner').classList.add('hidden'); }
+</script>
+
+<script>
+  function copyToClipboard(elementId, button) {
+    const text = document.getElementById(elementId).textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      const icon = button.querySelector('i');
+      icon.className = 'fas fa-check text-green-400';
+      setTimeout(() => { icon.className = 'far fa-copy'; }, 2000);
+    });
+  }
+</script>
+
+</body>
+</html>
