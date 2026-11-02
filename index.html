@@ -554,9 +554,9 @@ serv5_t:"Rekber Internasional", serv5_d:"Layanan rekber untuk transaksi lintas n
     contact_label:"HUBUNGI KAMI", contact_title:"Siap Bantu Transaksi Anda", contact_direct:"Kontak Langsung", contact_wa:"WhatsApp (Transaksi)", contact_tg:"Telegram (Testimoni)", contact_sosmed:"Sosial Media",
     footer_desc:"Jasa Rekber Godev terpercaya untuk transaksi Indonesia & Pakistan.", footer_badan:"Badan Hukum", footer_pt:"Perseroan Perorangan", footer_jam:"Jam Operasional", footer_hari:"Senin - Minggu",
     warn_title:"PERHATIAN PENTING!", warn_desc:"Rekber Faris Asa HANYA melayani transaksi melalui WhatsApp di nomor <strong class=\"text-white\">+62 895-0991-5451</strong>. Selalu hubungi kami melalui tombol WhatsApp di website ini. HATI-HATI terhadap akun clone/palsu yang mengatasnamakan kami. Kami tidak bertanggung jawab atas transaksi di luar nomor tersebut.",
-fb_warn_title:"Pengumuman Penting!",
-fb_warn_body:"Mohon perhatian! Akun Facebook resmi kami <strong class=\"text-red-500\">saat ini sedang terkena banned</strong> oleh pihak Meta. Jika Anda menemukan akun Facebook yang mengatasnamakan <strong>Rekber Faris Asa</strong>, <strong>Faris Asa</strong>, atau <strong>Faris Asa Putra Kisworo</strong> yang aktif, dapat dipastikan itu adalah <strong class=\"text-red-500\">AKUN CLONE / PALSU</strong>.<br><br>Seluruh transaksi HANYA dilayani melalui <strong>WhatsApp resmi +62 895-0991-5451</strong>. Selalu verifikasi kontak Anda melalui website resmi ini.",
-fb_warn_btn:"Saya Mengerti", fb_warn_lang:"English",
+
+
+
     contact_email:"Email Resmi", legal_terms:"Syarat & Ketentuan", legal_privacy:"Kebijakan Privasi",
     pay_label:"METODE PEMBAYARAN", pay_title:"Pembayaran Fleksibel & Aman",
 pay_cat_qris_d:"Scan & bayar instan", pay_cat_bank:"Bank & Bank Digital", pay_cat_bank_d:"6 rekening", pay_cat_ewallet:"E-Wallet", pay_cat_ewallet_d:"3 rekening", pay_cat_crypto:"Crypto", pay_cat_crypto_d:"6 alamat wallet",
@@ -613,9 +613,9 @@ serv5_t:"International Escrow", serv5_d:"Escrow service for other cross-border t
     contact_label:"CONTACT US", contact_title:"Ready to Help Your Transaction", contact_direct:"Direct Contact", contact_wa:"WhatsApp (Transactions)", contact_tg:"Telegram (Testimonials)", contact_sosmed:"Social Media",
     footer_desc:"Trusted Google Play Console escrow service for Indonesia & Pakistan transactions.", footer_badan:"Legal Entity", footer_pt:"Individual Company", footer_jam:"Operating Hours", footer_hari:"Monday - Sunday",
     warn_title:"IMPORTANT WARNING!", warn_desc:"Rekber Faris Asa ONLY handles transactions via WhatsApp at <strong class=\"text-white\">+62 895-0991-5451</strong>. Always contact us through the WhatsApp buttons on this website. BEWARE of clone/fake accounts impersonating us. We are not responsible for transactions outside this number.",
-fb_warn_title:"Important Notice!",
-fb_warn_body:"Please pay attention! Our official Facebook account <strong class=\"text-red-500\">is currently banned</strong> by Meta. If you find any active Facebook account claiming to be <strong>Rekber Faris Asa</strong>, <strong>Faris Asa</strong>, or <strong>Faris Asa Putra Kisworo</strong>, it is definitely a <strong class=\"text-red-500\">CLONE / FAKE ACCOUNT</strong>.<br><br>All transactions are ONLY handled through the official <strong>WhatsApp +62 895-0991-5451</strong>. Always verify your contacts through this official website.",
-fb_warn_btn:"I Understand", fb_warn_lang:"Indonesia",
+
+
+
     contact_email:"Official Email", legal_terms:"Terms & Conditions", legal_privacy:"Privacy Policy",
     pay_label:"PAYMENT METHODS", pay_title:"Flexible & Secure Payments",
 pay_cat_qris_d:"Scan & pay instantly", pay_cat_bank:"Banks & Digital Banks", pay_cat_bank_d:"6 accounts", pay_cat_ewallet:"E-Wallets", pay_cat_ewallet_d:"3 accounts", pay_cat_crypto:"Crypto", pay_cat_crypto_d:"6 wallet addresses",
@@ -782,40 +782,7 @@ document.querySelectorAll('.counter').forEach(c => io.observe(c));
   }
 </script>
 
-<!-- POPUP PERINGATAN FB -->
-<div id="fbWarnModal" class="fixed inset-0 z-[70] hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4">
-  <div class="bg-white dark:bg-slate-900 rounded-2xl max-w-lg w-full p-6 md:p-8 relative border-t-4 border-red-500 shadow-2xl">
-    <div class="text-center mb-5">
-      <div class="w-16 h-16 mx-auto rounded-full bg-red-500/10 flex items-center justify-center mb-4">
-        <i class="fas fa-triangle-exclamation text-3xl text-red-500"></i>
-      </div>
-      <h3 class="text-xl md:text-2xl font-bold text-slate-900 dark:text-white" data-i18n="fb_warn_title">Pengumuman Penting!</h3>
-    </div>
-    <div class="text-sm text-slate-600 dark:text-slate-300 space-y-3 text-left" data-i18n="fb_warn_body">
-      Mohon perhatian! Akun Facebook resmi kami <strong class="text-red-500">saat ini sedang terkena banned</strong> oleh pihak Meta. Jika Anda menemukan akun Facebook yang mengatasnamakan <strong>Rekber Faris Asa</strong>, <strong>Faris Asa</strong>, atau <strong>Faris Asa Putra Kisworo</strong> yang aktif, dapat dipastikan itu adalah <strong class="text-red-500">AKUN CLONE / PALSU</strong>.<br><br>
-      Seluruh transaksi HANYA dilayani melalui <strong>WhatsApp resmi +62 895-0991-5451</strong>. Selalu verifikasi kontak Anda melalui website resmi ini.
-    </div>
-    <div class="mt-6 grid grid-cols-2 gap-3">
-      <button onclick="toggleLang()" class="bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-800 dark:text-white font-bold py-3 rounded-xl transition flex items-center justify-center gap-2">
-        <i class="fas fa-globe"></i> <span data-i18n="fb_warn_lang">English</span>
-      </button>
-      <button onclick="tutupFbWarn()" class="bg-red-500 hover:bg-red-600 text-white font-bold py-3 rounded-xl transition" data-i18n="fb_warn_btn">Saya Mengerti</button>
-    </div>
-  </div>
-</div>
-<script>
-  function tutupFbWarn(){
-    const m = document.getElementById('fbWarnModal');
-    m.classList.add('hidden'); m.classList.remove('flex');
-    localStorage.setItem('fbWarnDate', new Date().toDateString());
-  }
-  window.addEventListener('load', function(){
-    if (localStorage.getItem('fbWarnDate') !== new Date().toDateString()) {
-      const m = document.getElementById('fbWarnModal');
-      m.classList.remove('hidden'); m.classList.add('flex');
-    }
-  });
-</script>
+
 
 <!-- Cookie Consent -->
 <div id="cookieBanner" class="fixed bottom-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur border-t border-slate-700 p-4 hidden">
